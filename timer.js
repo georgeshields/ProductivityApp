@@ -1,28 +1,43 @@
-// Set the date we're counting down to
-var countDownDate = new Date("Jan 5, 2030 15:37:25").getTime();
 
-// Update the count down every 1 second
-var x = setInterval(function() {
 
-  // Get today's date and time
-  var now = new Date().getTime();
+function startTimer(){
+
+    let time_seconds = 5;
+    let time_minutes = 5;
     
-  // Find the distance between now and the count down date
-  var distance = countDownDate - now;
+    document.getElementById('timerMessage').innerText = "Timer started for " + time_seconds + " seconds";
+    document.getElementById('play_pause').src='running_timer.png'; // shows timer running logo
     
-  // Time calculations for days, hours, minutes and seconds
-  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
     
-  // Output the result in an element with id="demo"
-  document.getElementById("minutes").innerHTML = days + "d " + hours + "h "
-  + minutes + "m " + seconds + "s ";
     
-  // If the count down is over, write some text 
-  if (distance < 0) {
-    clearInterval(x);
-    document.getElementById("minutes").innerHTML = "EXPIRED";
-  }
-}, 1000);
+    let countdown = setInterval(function(){
+        time_seconds--; // decreases by 1 second
+    
+    
+    document.getElementById('timerMessage').innerText = "Countdown: " + time_seconds + " seconds";
+    
+    if (time_seconds <= 0){
+        clearInterval(countdown);  // Stop the interval
+        alert("timer done"); // sends popup
+        document.getElementById('play_pause').src='green_play.png'; // shows stop timer logo
+        document.getElementById('timerMessage').innerText = "Timer stopped";
+            }
+        }, 1000);  // 1000 milliseconds = 1 second
+    }
+    
+    /*
+    setTimeout(function() {
+        alert("timer done"); // sends popup
+        document.getElementById('play_pause').src='green_play.png'; // shows stop timer logo
+        document.getElementById('timerMessage').innerText = "Timer stopped";
+    }, time_seconds * 1000);  // Time in milliseconds 
+    
+    /*
+    timer_minutes(function() {
+        console.log(time_minutes + "minute test timer");
+    }, time_seconds * 60000);  // Time in milliseconds 
+    */
+    
+    
+    document.getElementById('start_timer').addEventListener('click', startTimer);
+    
