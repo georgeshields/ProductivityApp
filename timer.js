@@ -1,5 +1,3 @@
-
-
 function startTimer(){
 
     let time_seconds = 5;
@@ -40,4 +38,3 @@ function startTimer(){
     
     
     document.getElementById('start_timer').addEventListener('click', startTimer);
-    
